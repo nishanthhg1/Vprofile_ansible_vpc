@@ -23,6 +23,6 @@
         map_public: yes
         az: "{{zone1}}"
         tags:
-          Name:pubsub1
+          Name: pubsub1
       register: pubsub1_out
 
