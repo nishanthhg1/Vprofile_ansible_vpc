@@ -14,4 +14,8 @@
         tenancy: default
         dns_support: yes
         dns_hostnames: yes
+      register: vpc_out
+
+    - debug:
+        var: vpc_out
 
