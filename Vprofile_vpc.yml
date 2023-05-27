@@ -27,3 +27,27 @@
           Name: pubsub1
       register: pubsub1_out
 
+    - name: creating public subnet2
+      ec2_vpc_subnet:
+        vpc_id: "{{vpc_out.vpc.id}}"
+        region: "{{region}}"
+        cidr: "{{pubsub2Cidr}}"
+        map_public: yes
+        az: "{{zone2}}"
+        tags:
+          Name: pubsub2
+      register: pubsub2_out
+
+    - name: creating public subnet3
+      ec2_vpc_subnet:
+        vpc_id: "{{vpc_out.vpc.id}}"
+        region: "{{region}}"
+        cidr: "{{pubsub3Cidr}}"
+        map_public: yes
+        az: "{{zone3}}"
+        tags:
+          Name: pubsub3
+      register: pubsub3_out
+
+
+
