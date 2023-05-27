@@ -87,7 +87,7 @@
       ec2_vpc_igw:
         vpc_id: "{{vpc_out.vpc.id}}"
         state: "{{state}}"
-      resister: igw_out
+      register: igw_out
 
 
 
