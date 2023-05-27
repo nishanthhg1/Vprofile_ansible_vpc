@@ -146,8 +146,8 @@
         - prisub3_out.subnet.id
         - igw_out.gateway_id
         - nat_out.nat_gateway_id
-        - pubRT_out.rout_table.id
-        - priRT_out.rout_table.id
+        - pubRT_out.route_table.id
+        - priRT_out.route_table.id
 
 
 
