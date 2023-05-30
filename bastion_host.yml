@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: import vaiables
+      include_vars: vars/output_vars
+
+    - name: import vaiables
+      include_vars: vars/bastion_setup
+
+    - name: creat key pair
+      ec2_key:
+        name: bastion_key
+        region: "{{region}}"
+        state: "{{state}}"
+      register: key_out
+
+    - debug:
+        var: key_out
+
+    - name: create security group
+      ec2_group:
+        name: bastion_SG
+        description: sg with rule descriptions
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{Myip}}"
+        register: group_out

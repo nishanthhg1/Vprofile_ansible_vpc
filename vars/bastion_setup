@@ -1,3 +1,5 @@
 bastion_ami: "ami-0607784b46cbe5816"
 region: "ap-south-1"
 Myip:  152.58.210.86/32
+
+state: present
