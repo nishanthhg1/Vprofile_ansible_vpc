@@ -16,8 +16,12 @@
         state: "{{state}}"
       register: key_out
 
-    - debug:
-        var: key_out
+    - name: save private key
+      copy:
+        content: "{{key_out.key.private_key}}"
+        dest: ./bastion-key.pem
+        mode: 0600
+      when: key_out.changed
 
     - name: create security group
       ec2_group:
@@ -29,5 +33,5 @@
           - proto: tcp
             from_port: 22
             to_port: 22
-            cidr_ip: "{{Myip}}"
+            cidr_ip: 0.0.0.0/0
         register: group_out
