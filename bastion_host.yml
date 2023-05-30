@@ -43,7 +43,7 @@
         region: "{{region}}"
         image: "{{bastion_ami}}"
         vpc_subnet_id: "{{pubsub1id}}"
-        group_id: "{{bastion_SG.group_id}}"
+        group_id: "{{group_out.group_id}}"
         wait: yes
         wait_timeout: 300
         instance_tags:
