@@ -35,3 +35,24 @@
             to_port: 22
             cidr_ip: 0.0.0.0/0
       register: group_out
+
+    - name: create bastion host
+      ec2:
+        key_name: bastion_key
+        instance_type: t2.micro
+        region: "{{region}}"
+        image: "{{bastion_ami}}"
+        vpc_subnet_id: "{{pubsub1id}}"
+        group_id: "{{bastion_SG.group_id}}"
+        wait: yes
+        wait_timeout: 300
+        instance_tags:
+          Name: bastion_host
+          project: vprofile
+          owner: devops team
+        exact_count: 1
+        count_tag:
+          Name: bastion_host
+          project: vprofile
+          owner: devops team
+      register: bastionhost_out
