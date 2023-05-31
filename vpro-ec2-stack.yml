@@ -14,11 +14,11 @@
         name: vpro-stack-key
         region: "{{region}}"
         state: present
-      register: key-out
+      register: stack_key
 
     - name: saving the private key
       copy:
         content: "{{key-out.key.private_key}}"
         dest: ./vpro-stack-key.pem
         mode: 0600
-      when: key-out.changed
+      when: stack_key.changed
