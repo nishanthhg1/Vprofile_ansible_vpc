@@ -18,7 +18,7 @@
 
     - name: saving the private key
       copy:
-        content: "{{key-out.key.private_key}}"
+        content: "{{stack_key.key.private_key}}"
         dest: ./vpro-stack-key.pem
         mode: 0600
       when: stack_key.changed
