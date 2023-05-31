@@ -1,0 +1,7 @@
+# ami id
+
+nginx-ami: ami-0f5ee92e2d63afc18
+tomcat-ami: ami-0f5ee92e2d63afc18
+memcache-ami: ami-0f5ee92e2d63afc18
+rmq-ami: ami-0f5ee92e2d63afc18
+mysql-ami: ami-0f5ee92e2d63afc18

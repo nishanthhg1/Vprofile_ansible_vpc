@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  tasks:
+    - name: import the out_put variables
+      include_vars: vars/output_vars
+
+    - name: import the stack vars
+      include_vars: vars/vpro-stack-var
+
+    - name: create key-pair for all instances
+      ec2_key:
+        name: vpro-stack-key
+        region: "{{region}}"
+        state: present
+      register: key-out
+
+    - name: saving the private key
+      copy:
+        content: "{{key-out.key.private_key}}"
+        dest: ./vpro-stack-key.pem
+        mode: 0600
+      when: key-out.changed
