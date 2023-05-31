@@ -7,7 +7,7 @@
       include_vars: vars/output_vars
 
     - name: import vaiables
-      include_vars: vars/bastion_setup
+      include_vars: vars/vpc_setup
 
     - name: creat key pair
       ec2_key:
