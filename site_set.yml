@@ -1,0 +1,4 @@
+---
+- name: imoprting playbooks
+-  import_playbook: Vprofile_vpc.yml
+-  import_playbook: bastion_host.yml
