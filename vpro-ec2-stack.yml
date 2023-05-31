@@ -22,3 +22,36 @@
         dest: ./vpro-stack-key.pem
         mode: 0600
       when: stack_key.changed
+
+    - name: load balancer security group
+      ec2_group:
+        name: vproELB_SG
+        description: SG with relus defined
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: 0.0.0.0/0
+      register: vproELB_SG_out
+
+    - name: create SG for vprofile stack
+      ec2_group:
+        name: vpro_stack_SG
+        description: SG for vprofilr stack
+        vpc_id: "{{vpcid}}"
+        region: "{{region}}"
+        purge_rules: no
+        rules:
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            group_id: "{{vproELB_SG_out.group_id}}"
+
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: 0.0.0.0/0
+

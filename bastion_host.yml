@@ -56,3 +56,11 @@
           project: vprofile
           owner: devops team
       register: bastionhost_out
+
+    - name: save group id
+      blockinfile:
+        path: vars/output_vars
+        backup: no
+        block:
+          bastionSGid: "{{group_out.group_id}}"
+
